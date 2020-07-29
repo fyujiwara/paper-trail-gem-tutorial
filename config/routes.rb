@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :articles do
     member do
       get "versions", to: "articles#versions"
+      get "version/:version_id", to: "articles#version", as: "version"
     end
   end
 end
