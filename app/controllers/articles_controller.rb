@@ -84,6 +84,18 @@ class ArticlesController < ApplicationController
     @articles = @latest_destroyed_versions
   end
 
+  def restore
+    @latest_version = Article.new(id: params[:id]).versions.last
+    if @latest_version.event == "destroy"
+      @article = @latest_version.reify
+      if @article.save
+        redirect_to @article, notice: "Article was successfully restored."
+      else
+        render "deleted"
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
