@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :versions]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :version, :versions]
   before_action :set_version, only: [:version]
 
   # GET /articles
