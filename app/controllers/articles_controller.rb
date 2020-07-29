@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :versions]
+  before_action :set_version, only: [:version]
 
   # GET /articles
   # GET /articles.json
@@ -61,6 +62,9 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def version
+  end
+
   def versions
     @articles = @article.versions
   end
@@ -69,6 +73,10 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def set_version
+      @version = PaperTrail::Version.find_by(item_id: @article, id: params[:version_id])
     end
 
     # Only allow a list of trusted parameters through.
