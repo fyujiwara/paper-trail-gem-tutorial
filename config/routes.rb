@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     collection do
       get "deleted", to: "articles#deleted"
     end
+    resources :comments, only: [:edit, :create, :update, :destroy]
   end
 end
